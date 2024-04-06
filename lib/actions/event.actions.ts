@@ -1,7 +1,5 @@
 'use server'
-
 import { revalidatePath } from 'next/cache'
-
 import { connectToDatabase } from '@/lib/backend'
 import Event from '@/lib/backend/models/event.model'
 import User from '@/lib/backend/models/user.model'
@@ -27,7 +25,7 @@ const populateEvent = (query: any) => {
     .populate({ path: 'category', model: Category, select: '_id name' })
 }
 
-// CREATE
+
 export async function createEvent({ userId, event, path }: CreateEventParams) {
   try {
     await connectToDatabase()
@@ -44,7 +42,7 @@ export async function createEvent({ userId, event, path }: CreateEventParams) {
   }
 }
 
-// GET ONE EVENT BY ID
+
 export async function getEventById(eventId: string) {
   try {
     await connectToDatabase()
@@ -59,7 +57,7 @@ export async function getEventById(eventId: string) {
   }
 }
 
-// UPDATE
+
 export async function updateEvent({ userId, event, path }: UpdateEventParams) {
   try {
     await connectToDatabase()
@@ -82,7 +80,7 @@ export async function updateEvent({ userId, event, path }: UpdateEventParams) {
   }
 }
 
-// DELETE
+
 export async function deleteEvent({ eventId, path }: DeleteEventParams) {
   try {
     await connectToDatabase()
@@ -94,7 +92,7 @@ export async function deleteEvent({ eventId, path }: DeleteEventParams) {
   }
 }
 
-// GET ALL EVENTS
+
 export async function getAllEvents({ query, limit = 6, page, category }: GetAllEventsParams) {
   try {
     await connectToDatabase()
@@ -123,7 +121,7 @@ export async function getAllEvents({ query, limit = 6, page, category }: GetAllE
   }
 }
 
-// GET EVENTS BY ORGANIZER
+
 export async function getEventsByUser({ userId, limit = 6, page }: GetEventsByUserParams) {
   try {
     await connectToDatabase()
@@ -145,7 +143,7 @@ export async function getEventsByUser({ userId, limit = 6, page }: GetEventsByUs
   }
 }
 
-// GET RELATED EVENTS: EVENTS WITH SAME CATEGORY
+
 export async function getRelatedEventsByCategory({
   categoryId,
   eventId,
